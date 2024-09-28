@@ -97,8 +97,12 @@ def main():
     time.sleep(1)
 
     for domain in domains:
-        aliyun.set_dcdn_domain_ssl_certificate(domain, cert_name, cert_id)
-        print(f'SetDcdnDomainSSLCertificate, CertName: {cert_name}, Domain: {domain}')
+        try:
+            aliyun.set_dcdn_domain_ssl_certificate(domain, cert_name, cert_id)
+        except Exception as e:
+            print(f'SetDcdnDomainSSLCertificate, CertName: {cert_name}, Domain: {domain}, Exception: {e}')
+        else:
+            print(f'SetDcdnDomainSSLCertificate, CertName: {cert_name}, Domain: {domain}')
         time.sleep(1)
 
 
